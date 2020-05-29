@@ -23,6 +23,47 @@ public class UsersRepository {
 		private PreparedStatement pstmt = null;
 		private ResultSet rs = null;
 		
+		
+		// 해당 아이디, 비번으로 사용자가 없는 경우는 null 반환
+		public Users findByUsernameAndPassword(String username, String password) {
+			final String SQL = "SELECT id,username,email,address,userProfile,userRole,createDate FROM users "
+									+ " WHERE username = ? AND password = ?";
+			
+			Users user = null;
+			
+			try {
+				conn = DBConn.getConnection();
+				pstmt = conn.prepareStatement(SQL);
+				// 물음표 완성하기
+				pstmt.setString(1,username);
+				pstmt.setString(2,password);
+				
+				rs = pstmt.executeQuery();
+				
+				// if 해서 rs
+				if (rs.next()) {
+					user = new Users();
+					
+					user.setId(rs.getInt("id"));
+					user.setUsername(rs.getString("username"));
+					user.setEmail(rs.getString("email"));
+					user.setAddress(rs.getString("address"));
+					user.setUserProfile(rs.getString("userProfile"));
+					user.setUserRole(rs.getString("userRole"));
+					user.setCreateDate(rs.getTimestamp("createDate"));
+				}
+				
+				return user;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(TAG + "findByUsernameAndPassword() : " + e.getMessage());
+			} finally {
+				DBConn.close(conn, pstmt, rs);
+			}
+			return null;
+		}
+		
+		
 		public int save(Users user) {
 			final String SQL = "INSERT INTO users(id,username,password,email,address,userRole,createDate) VALUES (USERS_SEQ.NEXTVAL, ?,?,?,?,?,SYSDATE)";
 			
@@ -126,4 +167,6 @@ public class UsersRepository {
 			}
 			return null;
 		}
+		
+		
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cos.blog.action.Action;
+import com.cos.blog.action.board.BoardHomeAction;
 import com.cos.blog.action.user.UsersJoinAction;
 import com.cos.blog.action.user.UsersJoinProcAction;
 import com.cos.blog.action.user.UsersLoginAction;
@@ -33,8 +34,6 @@ public class BoardController extends HttpServlet {
 		System.out.println(TAG + "doProcess : " + cmd);
 		Action action = router(cmd);
 		action.execute(request, response);
-		
-		
 	}
 	
 	
