@@ -13,6 +13,7 @@
 <h1>
 	<% if (principal != null)  { %>
 		<%= principal.getUsername() %>
+		<br/>
 	<% } %>
 </h1>
 
