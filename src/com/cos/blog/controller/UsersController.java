@@ -53,6 +53,7 @@ public class UsersController extends HttpServlet {
 			// 회원 삭제를 진행한 후 -> 로그아웃을 하고 -> index.jsp로 이동
 		} else if (cmd.equals("login")) {
 			// 회원 로그인 페이지로 이동
+			return new UsersLoginAction();
 		} else if (cmd.equals("loginProc")) {
 			// 회원 로그인을 수행한 후 -> 세션에 등록을 하고 -> index.jsp로 이동
 		}

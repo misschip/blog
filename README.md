@@ -42,8 +42,8 @@ CREATE TABLE reply(
     boardId number,
     content varchar2(300) not null,
     createDate timestamp,
-    foreign key (userId) references users (id) on delete set null,  // users(id)가 삭제될 때 userId를 null로
-    foreign key (boardId) references board (id) on delete cascade   // board(id) 글이 삭제될 때 reply 글도  삭제되도록
+    foreign key (userId) references users (id) on delete set null,  -- users(id)가 삭제될 때 userId를 null로
+    foreign key (boardId) references board (id) on delete cascade   -- board(id) 글이 삭제될 때 reply 글도  삭제되도록
 );
 ```
 
