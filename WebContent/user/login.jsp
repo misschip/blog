@@ -3,6 +3,9 @@
 
 <%@ include file="../include/nav.jsp" %>
 
+<!-- 아래 Bootstrap Form 관련 소스코드의 출처 :
+	https://www.w3schools.com/bootstrap4/bootstrap_forms.asp 에서
+	Form Validation 파트 소스코드임. -->
 
 <div class="container">
 

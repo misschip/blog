@@ -13,6 +13,8 @@ public class DBConn {
 		try {
 			
 			// 아래 4줄 코드 출처는 http://tomcat.apache.org/tomcat-8.5-doc/jndi-datasource-examples-howto.html#Oracle_8i,_9i_&_10g
+			// 위 링크의 예제 소스코드를 그대로 가져와 씀
+			// db의 아이디와 패스워드 등 정보는 context.xml 볼 것!
 			Context initContext = new InitialContext();
 			Context envContext  = (Context)initContext.lookup("java:/comp/env");
 			DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");

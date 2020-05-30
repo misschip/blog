@@ -11,7 +11,10 @@
     <welcome-file>join.jsp</welcome-file>
   </welcome-file-list>
   
-  
+  <!-- 아래 Oracle Datasource에 관한 설정값은 아파치 톰캣 문서를 참조하여 입력한 것!
+  	https://tomcat.apache.org/tomcat-8.5-doc/jndi-datasource-examples-howto.html#Oracle_8i,_9i_&_10g
+  	에서 web.xml 설정값을 그대로 가져옴
+  	이것 외에 오라클 jdbc 사용에 관한 더 중요한 설정 부분은 META-INF/context.xml에 들어있다. -->
   <resource-ref>
  <description>Oracle Datasource example</description>
  <res-ref-name>jdbc/myoracle</res-ref-name>
@@ -20,6 +23,9 @@
 </resource-ref>
 
 
+<!-- 아래 encoding filter 부분은 톰캣 서버 전체에 적용되는 web.xml 파일에서
+	 주석처리된 채 들어있는 인코딩 설정값을 복사해서 프로젝트의 web.xml에 개별적으로 가져와 적용한 것!
+	 이 설정이 없으면 DB 쪽으로 한글 입력이 깨져서 들어감 -->
 	<filter>
 		<filter-name>setCharacterEncodingFilter</filter-name>
 		<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>

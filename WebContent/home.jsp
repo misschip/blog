@@ -17,6 +17,10 @@
 	<% } %>
 </h1>
 
+<!-- 아래 부트스트랩 코드의 소스는
+https://www.w3schools.com/bootstrap4/bootstrap_cards.asp 에서
+Card Images 항목에 있는 걸 반복해서 붙여넣은 것! -->
+
 <div class="container">
 	<div class="card m-2" style="width:100%"> <!-- 고정 픽셀보다는 화면 퍼센트로 지정 -->
   <!-- <img class="card-img-top" src="img_avatar1.png" alt="Card image">  -->

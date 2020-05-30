@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<!-- 아래 소스코드 출처는 https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp -->
+<!-- Collapsing The Navigation Bar의 Try it Yourself로 들어와서 첫부분부터 긁어와 사용 -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

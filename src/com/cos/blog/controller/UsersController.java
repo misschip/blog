@@ -14,6 +14,10 @@ import com.cos.blog.action.user.UsersLoginAction;
 import com.cos.blog.action.user.UsersLoginProcAction;
 
 // http://localhost:8000/blog/user
+// 등 /blog/user 주소로 들어오는 GET, POST 요청을 전부 아래 서블릿이 처리함
+// 실제로는 http://localhost:8000/blog/user?cmd=login
+// http://localhost:8000/blog/user?cmd=join 등 주소값으로 요청이 들어오게 된다.
+// 또는 cmd=loginProc, cmd=joinProc 등의 경우는 Form 입력을 통해 POST 방식으로 요청이 들어온다.
 @WebServlet("/user")
 public class UsersController extends HttpServlet {
 	private static final String TAG = "UsersController : ";
@@ -28,11 +32,14 @@ public class UsersController extends HttpServlet {
 		doProcess(request, response);
 	}
 	
+	// GET이든 POST등 결국은 아래 doProcess()가 처리하게 된다.
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// http://localhost:8000/blog/user?cmd=join
 		String cmd = request.getParameter("cmd");
 		System.out.println(TAG + "doProcess : " + cmd);
+		// cmd값이 무엇이냐에 따라 각기 다른 Action 구현 객체가 반환됨
 		Action action = router(cmd);
+		// execute() 실행시 request, response 객체가 전달되고 있음
 		action.execute(request, response);
 		
 		

@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <context>
+
+<!-- 아래 오라클 DB 설정값은 
+	https://tomcat.apache.org/tomcat-8.5-doc/jndi-datasource-examples-howto.html#Oracle_8i,_9i_&_10g
+	에서 context configuration 부분을 그대로 가져옴
+	oracle.jdbc.driver.OracleDriver 보다는 oracle.jdbc.OracleDriver 를 사용하라고 하는 설명도 나오니까 참조할 것!
+	그리고 db.DBConn.java 에서 Connectin 객체 가져오는 부분 소스코드도 위 링크 페이지의 예제 코드를 그대로 가져온 것이다 -->
 <Resource name="jdbc/myoracle" auth="Container"
               type="javax.sql.DataSource" driverClassName="oracle.jdbc.driver.OracleDriver"
-              url="jdbc:oracle:thin:@localhost:1521:xe"
+              url="jdbc:oracle:thin:@localhost:1523:xe"
               username="cos" password="bitc5600" maxTotal="20" maxIdle="10"
               maxWaitMillis="-1"/>
 </context>
+
+
+<!-- 오라클 DB 관련 부분 3가지 -->
+<!-- 1. web.xml -->
+<!-- 2. context.xml -->
+<!-- 3. DBConn.java -->
+<!--  위 3 부분 전부
+	https://tomcat.apache.org/tomcat-8.5-doc/jndi-datasource-examples-howto.html#Oracle_8i,_9i_&_10g
+	에 있는 설정값과 예제 코드를 사용하고 있음 -->
