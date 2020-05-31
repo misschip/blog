@@ -1,0 +1,4 @@
+
+1. README.md
+	GRANT select, insert, delete, update ON cos.player TO cos;
+	에서 cos.player가 어떤 객체를 가리키는 건지 알아볼 것!

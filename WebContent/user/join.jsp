@@ -6,7 +6,6 @@
 
 <div class="container">
   <h2>회원 가입</h2>
-  <p>In this example, we use <code>.was-validated</code> to indicate what's missing before submitting the form:</p>
   <form action="/action_page.php" class="was-validated">
     <div class="form-group">
       <label for="username">Username:</label>
