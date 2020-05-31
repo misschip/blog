@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	// response.sendRedirect("board?cmd=list");
+	response.sendRedirect("board?cmd=home");
 %>
 
 index 페이지

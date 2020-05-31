@@ -32,10 +32,12 @@ public class UsersLoginProcAction implements Action {
 		
 		if (u != null) {
 			HttpSession session = request.getSession();
+			session.setAttribute("users", u);
+			
 			RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
 			dis.forward(request, response);
 		} else {
-			Script.href("로그인에 실패했습니다", "login.jsp", response);
+			Script.href("로그인에 실패했습니다", "user/login.jsp", response);
 		}
 	}
 
