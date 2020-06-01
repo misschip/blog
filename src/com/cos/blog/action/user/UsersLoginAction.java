@@ -20,7 +20,7 @@ public class UsersLoginAction implements Action {
 				System.out.println("모든 쿠키 출력: " + cookie.getName() + " : " + cookie.getValue());
 				if (cookie.getName().equals("remember")) {
 					request.setAttribute("remember", cookie.getValue());
-					System.out.println("cookie.getValue(): " + cookie.getValue());
+					// System.out.println("cookie.getValue(): " + cookie.getValue());
 				}
 			}
 		}

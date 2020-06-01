@@ -7,7 +7,7 @@
 
 <%
 	Users principal = (Users)session.getAttribute("principal");
-
+	System.out.println("nav.jsp : " + ((principal==null)? "null" : principal.getUsername()));
 %>
 
 <!DOCTYPE html>
