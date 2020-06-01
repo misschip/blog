@@ -20,7 +20,8 @@ public class BoardHomeAction implements Action {
 		// 3. home.jsp로 이동
 		RequestDispatcher dis = request.getRequestDispatcher("home.jsp");
 		dis.forward(request, response);
-
+		
+	
 	}
 
 }

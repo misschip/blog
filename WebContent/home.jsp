@@ -6,16 +6,7 @@
 <%@ include file="include/nav.jsp" %>
 
 
-<%
-	Users principal = (Users) session.getAttribute("principal");
-%>
-
-<h1>
-	<% if (principal != null)  { %>
-		<%= principal.getUsername() %>
-		<br/>
-	<% } %>
-</h1>
+<h1> </h1>
 
 <!-- 아래 부트스트랩 코드의 소스는
 https://www.w3schools.com/bootstrap4/bootstrap_cards.asp 에서
