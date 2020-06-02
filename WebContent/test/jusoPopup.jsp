@@ -52,7 +52,8 @@ function init(){
 	alert(url);	// 테스트 확인용
 	var confmKey = "devU01TX0FVVEgyMDIwMDYwMjA5NDkwMjEwOTgyMDE=";
 	var resultType = "4"; // 도로명주소 검색결과 화면 출력내용, 1 : 도로명, 2 : 도로명+지번, 3 : 도로명+상세건물명, 4 : 도로명+지번+상세건물명
-	var inputYn= "<%=inputYn%>";
+	// var inputYn= "<%=inputYn%>";
+	var inputYn= "N";
 	if(inputYn != "Y"){
 		document.form.confmKey.value = confmKey;
 		document.form.returnUrl.value = url;
