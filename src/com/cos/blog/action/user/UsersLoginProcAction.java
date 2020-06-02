@@ -40,9 +40,8 @@ public class UsersLoginProcAction implements Action {
 			
 			if (user != null) {
 				HttpSession session = request.getSession();
-				// session.setAttribute("users", user);
 				
-				// 자기만의 jsession id에 principal이 존재하므로 여러 클라이언트 간에 구분 가능함
+				// session.setAttribute("users", user);
 				session.setAttribute("principal", user);	// principal : 인증주체
 				
 				// checkbox가 선택된 경우에는 "on"이 반환되고 그 외는 null인 듯. 이건 form으로 테스트해 보면 금방 나옴.

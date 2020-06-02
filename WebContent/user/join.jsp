@@ -39,6 +39,7 @@
     <!-- 아래 button이 float-right임에 주의. inline-block이어서라고 하는데 ... -->
     <button type="button" class="btn btn-warning float-right" onClick="goPopup()">주소검색</button>
     <!--  위 버튼 type="button"으로 해야 눌러도 submit이 일어나지 않는다. 그래서 validation check 에러가 안남 -->
+    <!-- 만약 input type="submit" 으로 하면 클릭시 validation check로 빈 필드에 먼저 입력해야 한다는 알림이 뜨게 되는 현상 -->
     <input type="text" class="form-control" id="address" placeholder="Enter address" name="address" required>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
