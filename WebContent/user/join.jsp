@@ -11,9 +11,11 @@
 
 <div class="container">
 
-<form action="/blog/user?cmd=joinProc" method="POST" class="was-validated">
+<!-- 아래 onsumbit에서 return validate()가 true인 경우에만 action 실행됨 -->
+<form action="/blog/user?cmd=joinProc" method="POST" class="was-validated" onsubmit="return validate()">
   <div class="form-group">
     <label for="username">Username:</label>
+    <button type="button" class="btn btn-warning float-right" onClick="usernameCheck()">중복확인</button>
     <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
@@ -40,7 +42,7 @@
     <button type="button" class="btn btn-warning float-right" onClick="goPopup()">주소검색</button>
     <!--  위 버튼 type="button"으로 해야 눌러도 submit이 일어나지 않는다. 그래서 validation check 에러가 안남 -->
     <!-- 만약 input type="submit" 으로 하면 클릭시 validation check로 빈 필드에 먼저 입력해야 한다는 알림이 뜨게 되는 현상 -->
-    <input type="text" class="form-control" id="address" placeholder="Enter address" name="address" required>
+    <input type="text" class="form-control" id="address" placeholder="Enter address" name="address" required readonly>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
   </div>
@@ -75,5 +77,46 @@ function jusoCallBack(roadFullAddr){
 
 </script>
 
+<script>
+var isCheckedUsername = false;
+
+function validate() {
+	// alert('validate() 실행');
+	if (!isCheckedUsername) {
+		alert('username 중복체크를 실행해 주세요');
+	}
+	return isCheckedUsername;
+}
+
+function usernameCheck() {
+	// 성공시
+	var tfUsername = $('#username').val();
+	// alert(tfUsername);	// 모든 걸 String으로 보여줌
+	console.log(tfUsername);	// 객체 타입도 대응 가능한 방법
+
+	$.ajax({
+		type: 'get',
+		url: '/blog/user?cmd=usernameCheck&username=' +tfUsername
+		// ajax가 이렇게 호출함으로써 UsersUsernameCheckAction 객체가 생성 및 실행되고
+		// 결과적으로는 response.getWriter() 한후 결과를 출력해주고 있는데
+		// UsersUsernameCheckAction의 execute 메서드 참조)
+		// 이게 어떻게 아래 function의 매개값으로 전달되는지는 조금 의아함
+	}).done(function(result){
+		console.log(result);
+		if (result == 1) {
+			alert('아이디가 중복되었습니다');
+		} else if (result == 0) {
+			alert('사용가능한 아이디입니다');
+			isCheckedUsername = true;
+		} else {
+			console.log('develop : 서버오류');
+		}
+	}).fail(function(error){
+		console.log(error);
+	});
+	
+}
+
+</script>
 
 <%@ include file="../include/footer.jsp" %>

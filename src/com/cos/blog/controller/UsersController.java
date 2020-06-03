@@ -13,6 +13,7 @@ import com.cos.blog.action.user.UsersJoinProcAction;
 import com.cos.blog.action.user.UsersLoginAction;
 import com.cos.blog.action.user.UsersLoginProcAction;
 import com.cos.blog.action.user.UsersLogoutAction;
+import com.cos.blog.action.user.UsersUsernameCheckAction;
 
 // http://localhost:8000/blog/user
 // 등 /blog/user 주소로 들어오는 GET, POST 요청을 전부 아래 서블릿이 처리함
@@ -71,6 +72,8 @@ public class UsersController extends HttpServlet {
 			
 			
 			return new UsersLogoutAction();
+		} else if (cmd.equals("usernameCheck")) {
+			return new UsersUsernameCheckAction();
 		}
 		
 		return null;

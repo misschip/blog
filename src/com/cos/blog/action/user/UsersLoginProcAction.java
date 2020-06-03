@@ -48,11 +48,19 @@ public class UsersLoginProcAction implements Action {
 				// 체크박스가 선택된 경우에 쿠키에 "remember"를 key로 하고 username을 value로 해서 저장한 후
 				// 클라이언트에 대한 response에 담아서 보냄
 				if (request.getParameter("remember") != null) {
+					// 아래 코드에 의해 response header에는
+					// key => Set-Cookie
+					// value => remember=ssar
+					// 라고 하는 항목으로 클라이언트로 보냄
 					Cookie cookie = new Cookie("remember", user.getUsername());
 					response.addCookie(cookie);
-				} else {
-					Cookie cookie = new Cookie("remember", user.getUsername());
-					cookie.setMaxAge(0);
+					
+					// 결국 위 2줄 코드는 아래 한줄 코드와 동일한 작용을 함. ssar은 username
+					// response.setHeader("Set-Cookie", "remember=ssar");
+				} else {	// 쿠키 삭제
+					// Cookie cookie = new Cookie("remember", user.getUsername());
+					Cookie cookie = new Cookie("remember", "");	// 어차피 사라질 쿠키이므로 두번째 매개값은 ""로 해도 ok
+					cookie.setMaxAge(0);	// setMaxAge(0)으로 하는 게 핵심!
 					response.addCookie(cookie);
 				}
 		
@@ -60,7 +68,6 @@ public class UsersLoginProcAction implements Action {
 			} else {
 				Script.back("로그인  실패", response);
 			}
-		
 	}
 	
 }

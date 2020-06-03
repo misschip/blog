@@ -4,11 +4,13 @@
 <%@ include file="../include/nav.jsp" %>
 
 <%
-	String remember = (String)request.getAttribute("remember");
+	// remember에 대응하는 username을 직접 가져오는 대신 이제부터는 EL로 직접 가져오도록 수정함
+/* 	String remember = (String)request.getAttribute("remember");
 
 	if (remember == null) {
 		remember = "";
-	}
+	} */
+	
 %>
 
 <!-- 아래 Bootstrap Form 관련 소스코드의 출처 :
@@ -20,7 +22,10 @@
 <form action="/blog/user?cmd=loginProc" method="POST" class="was-validated">
   <div class="form-group">
     <label for="username">Username:</label>
-    <input type="text" value="<%=remember %>" class="form-control" id="username" placeholder="Enter username" name="username" required>
+    <!-- 
+    <input type="text" value="<//%=remember %>" class="form-control" id="username" placeholder="Enter username" name="username" required>
+     -->
+    <input type="text" value="${cookie.remember.value}" class="form-control" id="username" placeholder="Enter username" name="username" required>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
   </div>
