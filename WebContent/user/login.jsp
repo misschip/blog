@@ -22,9 +22,10 @@
 <form action="/blog/user?cmd=loginProc" method="POST" class="was-validated">
   <div class="form-group">
     <label for="username">Username:</label>
-    <!-- 
-    <input type="text" value="<//%=remember %>" class="form-control" id="username" placeholder="Enter username" name="username" required>
-     -->
+
+<%--     <input type="text" value="<%=remember %>" class="form-control" id="username" placeholder="Enter username" name="username" required>
+ --%>
+ 	<%-- 아래 ${cookie}는 Expression Language의 내장 객체임 --%>
     <input type="text" value="${cookie.remember.value}" class="form-control" id="username" placeholder="Enter username" name="username" required>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>

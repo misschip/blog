@@ -37,7 +37,7 @@ public class UsersRepository {
 				
 				// if 해서 rs
 				if (rs.next()) {
-					return rs.getInt(1);
+					return rs.getInt(1);	// 0 또는 1 반환
 				}
 
 			} catch (Exception e) {

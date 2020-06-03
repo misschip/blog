@@ -89,9 +89,8 @@ function validate() {
 }
 
 function usernameCheck() {
-	// 성공시
 	var tfUsername = $('#username').val();
-	// alert(tfUsername);	// 모든 걸 String으로 보여줌
+	// alert(tfUsername);	// 모든 걸 String으로만 보여줌
 	console.log(tfUsername);	// 객체 타입도 대응 가능한 방법
 
 	$.ajax({
@@ -108,7 +107,7 @@ function usernameCheck() {
 		} else if (result == 0) {
 			alert('사용가능한 아이디입니다');
 			isCheckedUsername = true;
-		} else {
+		} else {	// 이 부분은 나중에 배포시에는 삭제할 부분임
 			console.log('develop : 서버오류');
 		}
 	}).fail(function(error){

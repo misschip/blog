@@ -6,10 +6,14 @@
 <!-- 아래 소스코드 출처는 https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp -->
 <!-- Collapsing The Navigation Bar의 Try it Yourself로 들어와서 첫부분부터 긁어와 사용 -->
 
-<%
+ 
+<%--
+	세션에 저장된 principal과 user 객체는 이제 EL을 사용해서 간편하게 가져오기 때문에 ( ${sessionScope.principal} )
+	아래 한 줄 코드는 필요없음
 	Users principal = (Users)session.getAttribute("principal");
-	// System.out.println("nav.jsp : " + ((principal==null)? "null" : principal.getUsername()));
-%>
+	System.out.println("nav.jsp : " + ((principal==null)? "null" : principal.getUsername()));
+--%>
+
 
 <!DOCTYPE html>
 <html lang="en">
