@@ -25,6 +25,6 @@
 	String returnStr = gson.toJson(dto);
 	System.out.println(returnStr);
 	
-	out.println(returnStr);
+	out.println(returnStr);	// AjaxRequestTest.jsp 측에 응답을 보냄
 	
 %>
