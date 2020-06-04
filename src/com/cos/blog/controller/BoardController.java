@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cos.blog.action.Action;
 import com.cos.blog.action.board.BoardHomeAction;
+import com.cos.blog.action.board.BoardWriteAction;
+import com.cos.blog.action.board.BoardWriteProcAction;
 import com.cos.blog.action.user.UsersJoinAction;
 import com.cos.blog.action.user.UsersJoinProcAction;
 import com.cos.blog.action.user.UsersLoginAction;
@@ -29,7 +31,7 @@ public class BoardController extends HttpServlet {
 	}
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// http://localhost:8000/blog/user?cmd=join
+		// http://localhost:8000/blog/board?cmd=home
 		String cmd = request.getParameter("cmd");
 		System.out.println(TAG + "doProcess : " + cmd);
 		Action action = router(cmd);
@@ -42,6 +44,12 @@ public class BoardController extends HttpServlet {
 		if (cmd.equals("home")) {
 			// 회원가입 페이지로 이동
 			return new BoardHomeAction();	// Board의 목록 보여주기
+		} else if (cmd.equals("write")) {
+			// 
+			return new BoardWriteAction();	// 글쓰기
+		} else if (cmd.equals("writeProc")) {
+			// 
+			return new BoardWriteProcAction();	// 글쓰기
 		} 
 		//cmd=home
 		return null;

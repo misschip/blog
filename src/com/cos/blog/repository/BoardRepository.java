@@ -25,15 +25,20 @@ public class BoardRepository {
 		private ResultSet rs = null;
 		
 		public int save(Board board) {
-			final String SQL = "";
+			final String SQL = "INSERT INTO board (id,userId,title,content,readCount,createDate) VALUES (BOARD_SEQ.NEXTVAL,?,?,?,?,SYSDATE)";
 			
 			try {
 				conn = DBConn.getConnection();
 				pstmt = conn.prepareStatement(SQL);
 				// 물음표 완성하기
+				pstmt.setInt(1, board.getUserId());
+				pstmt.setString(2, board.getTitle());
+				pstmt.setString(3, board.getContent());
+				pstmt.setInt(4, board.getReadCount());
+				// readCount는 0 디폴트로 입력되므로 생략해도 됨
 				
-				
-				return pstmt.executeUpdate();
+				int result = pstmt.executeUpdate();
+				return result;
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(TAG + "save : " + e.getMessage());
@@ -81,8 +86,8 @@ public class BoardRepository {
 			return -1;
 		}
 		
-		public List<Board> finaAll() {
-			final String SQL = "";
+		public List<Board> findAll() {
+			final String SQL = "SELECT id,userId,title,content,readCount,createDate FROM board";
 			List<Board> boards = new ArrayList<>();
 			
 			try {
@@ -90,7 +95,20 @@ public class BoardRepository {
 				pstmt = conn.prepareStatement(SQL);
 				// 물음표 완성하기
 				
+				rs = pstmt.executeQuery();
 				// while 돌려서 리스트에 넣기
+				while(rs.next()) {
+					Board board = Board.builder()
+							.id(rs.getInt("id"))
+							.userId(rs.getInt("userId"))
+							.title(rs.getString("title"))
+							.content(rs.getString("content"))
+							.readCount(rs.getInt("readCount"))
+							.createDate(rs.getTimestamp("createDate"))
+							.build();
+					
+					boards.add(board);
+				}
 				
 				return boards;
 			} catch (Exception e) {
