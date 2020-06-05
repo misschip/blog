@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.cos.blog.action.Action;
 import com.cos.blog.model.Board;
 import com.cos.blog.repository.BoardRepository;
+import com.cos.blog.util.HtmlParser;
 
 public class BoardHomeAction implements Action {
 
@@ -34,11 +35,10 @@ public class BoardHomeAction implements Action {
 		
 		// 본문을 미리보기 형태로 짧게 가공하기
 		for (Board board : boards) {
-			String preview = board.getContent();
-			// 글 본문(content)가 10글자 미만인 경우에도 아래 substring(0,10)에서 indexOutOfBounds 에러가 뜨지 않는 건 미스테리임
-			preview = preview.substring(0, 10) + "...";
+			String preview = HtmlParser.getContentPreview(board.getContent());
 			board.setContent(preview);
 		}
+		
 		
 		// 2. request에 담고
 		request.setAttribute("boards", boards);
