@@ -53,6 +53,7 @@ public class UsersLoginProcAction implements Action {
 					// value => remember=ssar
 					// 라고 하는 항목으로 클라이언트로 보냄
 					Cookie cookie = new Cookie("remember", user.getUsername());
+					// cookie.setHttpOnly(true); 	// 자바스크립트에 의한 쿠키 탈취를 방지함
 					response.addCookie(cookie);
 					
 					// 결국 위 2줄 코드는 아래 한줄 코드와 동일한 작용을 함. ssar은 username

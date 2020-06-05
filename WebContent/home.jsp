@@ -21,6 +21,8 @@ Card Images 항목에 있는 걸 반복해서 붙여넣은 것! -->
 		<div class="card m-2" style="width:100%">  <!-- 고정 픽셀보다는 화면 퍼센트로 지정  -->
 	  <!-- <img class="card-img-top" src="img_avatar1.png" alt="Card image">  -->
 	  <div class="card-body">
+	  	<%-- board.title, board.content EL 표현식 사용시
+	  		board.getTitle(), board.getContent() 메서드(Board 클래스의 getter)가 호출된다 --%>
 	    <h4 class="card-title">${board.title}</h4>
 	    <p class="card-text">${board.content}</p>
 	    <a href="#" class="btn btn-primary">상세 보기</a>

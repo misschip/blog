@@ -40,4 +40,15 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+
+		<!-- 반드시 인코딩 설정보다 하단에 위치해야!! -->
+		<filter>
+			<filter-name>xssEscapeServletFilter</filter-name>
+			<filter-class>com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter</filter-class>
+		</filter>
+		<filter-mapping>
+			<filter-name>xssEscapeServletFilter</filter-name>
+			<url-pattern>/*</url-pattern>
+		</filter-mapping>
+		
 </web-app>
