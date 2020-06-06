@@ -54,6 +54,6 @@
 </div>
 
 
-<script scr="/blog/js/join.js"></script>
+<script src="/blog/js/join.js"></script>
 
 <%@ include file="../include/footer.jsp" %>

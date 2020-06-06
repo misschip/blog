@@ -47,18 +47,21 @@ function tryLogin() {
 	}	
 
 	console.log(JSON.stringify(data));
+	console.log(data);
 	
 	$.ajax({
 		type: 'POST',	// 디폴트는 GET
 		url: '/blog/user?cmd=loginProc',	// 필수값
 		data: JSON.stringify(data),	// 보내는 데이터. 생략가능.
 		contentType: 'application/json; charset=utf-8',	// 보낼 데이터 타입
-		// dataType: 'json'
+		dataType: 'json'
 	}).done(function(result) {
+		console.log(typeof result);
+		console.log(result.length);
 		console.log(result);
 		console.log(data.username + "님 로그인 성공했습니다!");
 		$("#actionForm").remove();
-		$(".container").append("<p>" + username +  "님 환영합니다.</p>");
+		$(".container").append("<p>" + data.username +  "님 환영합니다.</p>");
 	}).fail(function(error) {
 		console.log(error);
 	});
