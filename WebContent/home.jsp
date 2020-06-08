@@ -25,7 +25,7 @@ Card Images 항목에 있는 걸 반복해서 붙여넣은 것! -->
 	  		board.getTitle(), board.getContent() 메서드(Board 클래스의 getter)가 호출된다 --%>
 	    <h4 class="card-title">${board.title}</h4>
 	    <p class="card-text">${board.content}</p>
-	    <a href="#" class="btn btn-primary">상세 보기</a>
+	    <a href="/blog/board?cmd=detail&id=${board.id}" class="btn btn-primary">상세 보기</a>
 	  </div>
 		</div>
 	</c:forEach>
