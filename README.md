@@ -69,3 +69,13 @@ userId, title, content, readCount, createDate
 FROM board
 OFFSET 0 ROWS FETCH NEXT 3 ROWS ONLY;
 ```
+
+```sql
+-- 3개만 갖고 오는 명령 (참조용)
+-- Oracle
+select * from board
+order by id desc
+offset 0 rows fetch next 3 rows only;
+-- MySql
+SELECT * FROM board LIMIT 3 OFFSET 0;
+```
