@@ -17,7 +17,7 @@ Card Images 항목에 있는 걸 반복해서 붙여넣은 것! -->
 	 
 	 
 	<%-- 아래 c:forEach에서는 items 부분에 쌍따옴표 빠뜨리거나 ${}를 빠뜨리기 쉬우므로 주의! --%>
-	<c:forEach var="board" items="${boards}">
+	<c:forEach var="board" items="${boards}">	<%-- 직전의 BoardHomeAction에서 request.setAttribute("boards", boards)로 저장한 것을 가져오는 것 --%>
 		<div class="card m-2" style="width:100%">  <!-- 고정 픽셀보다는 화면 퍼센트로 지정  -->
 	  <!-- <img class="card-img-top" src="img_avatar1.png" alt="Card image">  -->
 	  <div class="card-body">
@@ -29,6 +29,30 @@ Card Images 항목에 있는 걸 반복해서 붙여넣은 것! -->
 	  </div>
 		</div>
 	</c:forEach>
+
+	<br/>
+	
+	<ul class="pagination justify-content-center"> <!-- justify-content-start -->
+
+		<c:choose>
+			<c:when test="${param.page == 0 || param.page == null}">
+				<li class="page-item disabled"><a class="page-link" href="/blog/board?cmd=home&page=${param.page-1}">Previous</a></li>
+			</c:when>
+			<c:otherwise>
+				<li class="page-item"><a class="page-link" href="/blog/board?cmd=home&page=${param.page-1}">Previous</a></li>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${isLast}">
+				<li class="page-item disabled"><a class="page-link" href="/blog/board?cmd=home&page=${param.page+1}">Next</a></li>
+			</c:when>
+			<c:otherwise>
+				<li class="page-item"><a class="page-link" href="/blog/board?cmd=home&page=${param.page+1}">Next</a></li>
+			</c:otherwise>
+		</c:choose>
+
+	</ul>
+
 
 </div>
 

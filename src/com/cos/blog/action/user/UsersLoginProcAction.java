@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.cos.blog.action.Action;
 import com.cos.blog.model.Users;
 import com.cos.blog.repository.UsersRepository;
+import com.cos.blog.util.SHA256;
 import com.cos.blog.util.Script;
 
 public class UsersLoginProcAction implements Action {
@@ -32,7 +33,9 @@ public class UsersLoginProcAction implements Action {
 				
 				
 			String username = request.getParameter("username");
-			String password = request.getParameter("password");
+			String rawPassword = request.getParameter("password");
+			
+			String password = SHA256.encodeSha256(rawPassword);
 	
 			UsersRepository usersRepository = UsersRepository.getInstance();
 			// 세션은 사용자 정보를 다 담고 있어야 하므로 사용자 정보 전체 받아옴

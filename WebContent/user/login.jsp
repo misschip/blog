@@ -39,6 +39,9 @@
   
   <div class="form-group form-check">
     <label class="form-check-label">
+    <!-- 아래 c:choose의 기능 -->
+    <!-- 앞선 로그인시 아이디 기억하기를 체크했었을 경우에 remember 쿠키가 있을 것이므로
+    	그 값의 유무에 따라 이번 로그인 화면 표출시에도 아이디 기억하기를 미리 체크된 상태로 보여주도록 함 -->
     <c:choose>
     	<c:when test="${empty cookie.remember}">
       <input class="form-check-input" type="checkbox" name="remember"> 아이디 기억하기

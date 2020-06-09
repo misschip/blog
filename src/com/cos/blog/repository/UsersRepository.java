@@ -114,12 +114,16 @@ public class UsersRepository {
 		}
 		
 		public int update(Users user) {
-			final String SQL = "";
+			final String SQL = "UPDATE users SET password = ?, email = ?, address = ? WHERE id = ?";
 			
 			try {
 				conn = DBConn.getConnection();
 				pstmt = conn.prepareStatement(SQL);
 				// 물음표 완성하기
+				pstmt.setString(1, user.getPassword());
+				pstmt.setString(2, user.getEmail());
+				pstmt.setString(3, user.getAddress());
+				pstmt.setInt(4, user.getId());
 				
 				
 				return pstmt.executeUpdate();
@@ -174,15 +178,26 @@ public class UsersRepository {
 		
 		
 		public Users findById(int id) {
-			final String SQL = "";
+			final String SQL = "SELECT * FROM users WHERE id = ?";
 			Users user = new Users();
 			
 			try {
 				conn = DBConn.getConnection();
 				pstmt = conn.prepareStatement(SQL);
 				// 물음표 완성하기
+				pstmt.setInt(1, id);
 				
+				rs = pstmt.executeQuery();
 				// if 해서 rs
+				if(rs.next()) {
+					user = Users.builder()
+							.id(rs.getInt("id"))
+							.username(rs.getString("username"))
+							.email(rs.getString("email"))
+							.address(rs.getString("address"))
+							.createDate(rs.getTimestamp("createDate"))
+							.build();				
+				}
 				
 				return user;
 			} catch (Exception e) {

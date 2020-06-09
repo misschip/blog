@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%-- 회원정보 보기 클릭시 보여줄 화면임 --%>
+<%-- join.jsp 페이지를 약간 수정한 것. 비밀번호를 제외한 본인의 아이디,이메일,주소 등 값은 회원정보 보기 클릭시 바로 표출됨 --%>
+<%-- 이때 로그인한 회원 본인의 정보는 세션에 저장되어 있는 것을 바로 가져옴 ${principal.**} --%>
 
 
 <%@ include file="../include/nav.jsp" %>
@@ -11,11 +14,14 @@
 
 <div class="container">
 
-<!-- 아래 onsumbit에서 return validate()가 true인 경우에만 action 실행됨 -->
-<form action="/blog/user?cmd=joinProc" method="POST" class="was-validated" onsubmit="return validate()">
+
+<form action="/blog/user?cmd=updateProc" method="POST" class="was-validated">
+
+	<input type="hidden" name="id" value="${sessionScope.principal.id}"/>
+
   <div class="form-group">
     <label for="username">Username:</label>
-    <button type="button" class="btn btn-warning float-right" onClick="usernameCheck()">중복확인</button>
+    <!-- <button type="button" class="btn btn-warning float-right" onClick="usernameCheck()">중복확인</button>  -->
     <input value="${principal.username}" type="text" class="form-control" id="username" placeholder="Enter username" name="username" required readonly>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>

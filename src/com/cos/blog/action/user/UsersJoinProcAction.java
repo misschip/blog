@@ -11,6 +11,7 @@ import com.cos.blog.action.Action;
 import com.cos.blog.model.RoleType;
 import com.cos.blog.model.Users;
 import com.cos.blog.repository.UsersRepository;
+import com.cos.blog.util.SHA256;
 import com.cos.blog.util.Script;
 
 public class UsersJoinProcAction implements Action {
@@ -34,7 +35,8 @@ public class UsersJoinProcAction implements Action {
 		
 		// 1. 파라메터 받기 (x-www-form-urlencoded 라는 MIME 타입. key=value)
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String rawPassword = request.getParameter("password");
+		String password = SHA256.encodeSha256(rawPassword);
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
 		String userRole = RoleType.USER.toString();	// 기본값은 일반 사용자임. 테이블에다가 default로 들어가게 세팅해도 됨

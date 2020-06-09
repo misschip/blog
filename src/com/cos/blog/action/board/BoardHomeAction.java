@@ -31,7 +31,15 @@ public class BoardHomeAction implements Action {
 		
 		// 1. DB 연결해서 Board 목록 다 불러와서
 		BoardRepository boardRepository = BoardRepository.getInstance();
-		List<Board> boards = boardRepository.findAll();
+		
+		// 2. 3건만 가져오기
+		String pageStr = request.getParameter("page");
+		if (pageStr == null) pageStr = "0";
+		int page = Integer.parseInt(pageStr);
+		
+		List<Board> boards = boardRepository.findAll(page);
+		
+		// List<Board> boards = boardRepository.findAll();
 		
 		// 본문을 미리보기 형태로 짧게 가공하기
 		for (Board board : boards) {
@@ -42,6 +50,12 @@ public class BoardHomeAction implements Action {
 		
 		// 2. request에 담고
 		request.setAttribute("boards", boards);
+		
+		// 2.5 마지막 페이지 확인 로직
+		boolean isLast = false;
+		int count = boardRepository.count();
+		if(count <= (page*3)+3) isLast = true;	// 한페이지에 글 3개씩 보여주고 0페이지에서 이미 3개 보여주고 있으므로
+		request.setAttribute("isLast", isLast);
 		
 		// 3. home.jsp로 이동
 		RequestDispatcher dis = request.getRequestDispatcher("home.jsp");
