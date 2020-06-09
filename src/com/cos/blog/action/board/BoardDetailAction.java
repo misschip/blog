@@ -27,7 +27,8 @@ public class BoardDetailAction implements Action {
 		int id = Integer.parseInt(request.getParameter("id"));
 		BoardRepository boardRepository = BoardRepository.getInstance();
 		
-		//조회수 증가가 상세보기가 되기 전에 실행되는 것이 좋음
+		//조회수 증가가 상세보기가 되기 전에 실행되는 것이 좋음. MVC 패턴. jsp에서 실제 View로 보여주기 전 단계에서
+		//조회수 증가 관련 코드를 자바 코드로 미리 처리하고 jsp에서는 그 결과만 가져와 보여주기
 		int result = boardRepository.updateReadCount(id);
 
 		if(result != 1) {

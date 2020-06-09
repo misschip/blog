@@ -34,8 +34,8 @@ Card Images 항목에 있는 걸 반복해서 붙여넣은 것! -->
 	
 	<ul class="pagination justify-content-center"> <!-- justify-content-start -->
 
-		<c:choose>
-			<c:when test="${param.page == 0 || param.page == null}">
+		<c:choose>		<%-- 아래 param.page == null은 empty param.page로 써도 동일할 듯한데 확인 필요 --%>
+			<c:when test="${param.page == 0 || param.page == null}">	<%-- /board?cmd=home만 있는 경우 page=0으로 취급하는데 이때 param.page는 null --%>
 				<li class="page-item disabled"><a class="page-link" href="/blog/board?cmd=home&page=${param.page-1}">Previous</a></li>
 			</c:when>
 			<c:otherwise>
