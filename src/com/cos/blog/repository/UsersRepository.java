@@ -57,6 +57,8 @@ public class UsersRepository {
 			
 			Users user = null;
 			
+			System.out.println("findByUsernameAndPassword() : " + username + " " + password);
+			
 			try {
 				conn = DBConn.getConnection();
 				pstmt = conn.prepareStatement(SQL);
