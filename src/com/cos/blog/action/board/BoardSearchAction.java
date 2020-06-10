@@ -12,32 +12,31 @@ import com.cos.blog.action.Action;
 import com.cos.blog.model.Board;
 import com.cos.blog.repository.BoardRepository;
 import com.cos.blog.util.HtmlParser;
+import com.cos.blog.util.Script;
 
-public class BoardHomeAction implements Action {
+public class BoardSearchAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 쿠키 정보 출력해 보는 루틴. 나중에 지울것!
-//		Cookie[] cookies = request.getCookies();
-//		if (cookies != null) {
-//			for (Cookie cookie : cookies) {
-//				System.out.println("모든 쿠키 출력: " + cookie.getName() + " : " + cookie.getValue());
-//				//if (cookie.getName().equals("remember")) {
-//					//request.setAttribute("remember", cookie.getValue());
-//					//System.out.println("cookie.getValue(): " + cookie.getValue());
-//				//}
-//			}
-//		}	// 쿠키 정보 출력해 보는 루틴. 나중에 지울것!
+		
+		if (request.getParameter("keyword") == null ||
+			request.getParameter("keyword").equals("")	
+			) {
+			Script.back("검색 키워드가 없습니다", response);
+			return;
+		}
+			
+		
+
+		int page = Integer.parseInt(request.getParameter("page"));
+		String keyword = request.getParameter("keyword");
 		
 		// 1. DB 연결해서 Board 목록 다 불러와서
 		BoardRepository boardRepository = BoardRepository.getInstance();
 		
-		// 2. 3건만 가져오기
-		String pageStr = request.getParameter("page");
-		if (pageStr == null) pageStr = "0";
-		int page = Integer.parseInt(pageStr);
+		// 2. 키워드로 검색하여 일치하는 3건만 가져오기
 		
-		List<Board> boards = boardRepository.findAll(page);
+		List<Board> boards = boardRepository.findAll(page,keyword);
 		
 		// List<Board> boards = boardRepository.findAll();
 		

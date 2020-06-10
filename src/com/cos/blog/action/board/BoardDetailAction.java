@@ -56,7 +56,5 @@ public class BoardDetailAction implements Action {
 			Script.back("잘못된 접근입니다", response);
 		}
 	}
-	
-	
 
 }

@@ -6,6 +6,7 @@
 <%@ include file="include/nav.jsp" %>
 
 
+
 <h1> </h1>
 
 <!-- 아래 부트스트랩 코드의 소스는
@@ -14,7 +15,18 @@ Card Images 항목에 있는 걸 반복해서 붙여넣은 것! -->
 
 
 <div class="container">
-	 
+
+	<%-- div 크기를 화면 전체크기에 가깝게 키우고 form을 justify-content-end로 오른쪽 끝 부분에 배치 --%>
+	<div class="col-md-12 m-2"> <%-- 이 부분 소스 출처 https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp 에서 Navbar Forms and Buttons --%>
+		<%-- <div class="d-flex justify-content-center align-items-center container"> 	--%>
+		<form class="form-inline justify-content-end" action="/blog/board" method="get">
+		<input type="hidden" name="cmd" value="search" />
+		<input type="hidden" name="page" value="0" />
+    	<input type="text" name="keyword" class="form-control mr-sm-2" placeholder="Search">
+    	<button class="btn btn-primary" type="submit">검색</button>
+  </form>
+
+	</div>
 	 
 	<%-- 아래 c:forEach에서는 items 부분에 쌍따옴표 빠뜨리거나 ${}를 빠뜨리기 쉬우므로 주의! --%>
 	<c:forEach var="board" items="${boards}">	<%-- 직전의 BoardHomeAction에서 request.setAttribute("boards", boards)로 저장한 것을 가져오는 것 --%>
@@ -32,26 +44,9 @@ Card Images 항목에 있는 걸 반복해서 붙여넣은 것! -->
 
 	<br/>
 	
-	<ul class="pagination justify-content-center"> <!-- justify-content-start -->
-
-		<c:choose>		<%-- 아래 param.page == null은 empty param.page로 써도 동일할 듯한데 확인 필요 --%>
-			<c:when test="${param.page == 0 || param.page == null}">	<%-- /board?cmd=home만 있는 경우 page=0으로 취급하는데 이때 param.page는 null --%>
-				<li class="page-item disabled"><a class="page-link" href="/blog/board?cmd=home&page=${param.page-1}">Previous</a></li>
-			</c:when>
-			<c:otherwise>
-				<li class="page-item"><a class="page-link" href="/blog/board?cmd=home&page=${param.page-1}">Previous</a></li>
-			</c:otherwise>
-		</c:choose>
-		<c:choose>
-			<c:when test="${isLast}">
-				<li class="page-item disabled"><a class="page-link" href="/blog/board?cmd=home&page=${param.page+1}">Next</a></li>
-			</c:when>
-			<c:otherwise>
-				<li class="page-item"><a class="page-link" href="/blog/board?cmd=home&page=${param.page+1}">Next</a></li>
-			</c:otherwise>
-		</c:choose>
-
-	</ul>
+	
+	<%@ include file="include/paging.jsp"%>
+	
 
 
 </div>
