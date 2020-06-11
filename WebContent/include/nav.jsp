@@ -36,7 +36,8 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+  <%-- 아래 justify-content-between (justify-content-end, justify-content-around) 등으로 메뉴 배치 바꿈 --%>
+  <div class="justify-content-between collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
     
     <%-- <% if (principal == null ) { %> --%>
@@ -65,6 +66,17 @@
       	</c:otherwise>
       </c:choose>
     </ul>
+    
+    <ul class="navbar-nav">
+    	<c:if test="${not empty sessionScope.principal}">
+    	<li class="nav-item">
+    		<a href="/blog/user?cmd=profileUpload">
+    		<img style="border-radius:20px" onerror="this.src='/blog/images/userProfile.png'" src="${sessionScope.principal.userProfile}" width="40px" height="40px"/>
+    		</a>
+    	</li>
+    	</c:if>
+    </ul>
+    
   </div>  
 </nav>
 <br>

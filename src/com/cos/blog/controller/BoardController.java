@@ -21,7 +21,7 @@ import com.cos.blog.action.board.BoardWriteProcAction;
 // http://localhost:8000/blog/board
 @WebServlet("/board")
 public class BoardController extends HttpServlet {
-	private static final String TAG = "UsersController : ";
+	private static final String TAG = "BoardController : ";
 	private static final long serialVersionUID = 1L;
        
 
@@ -37,7 +37,7 @@ public class BoardController extends HttpServlet {
 		// http://localhost:8000/blog/board?cmd=home
 		String cmd = request.getParameter("cmd");
 		System.out.println(TAG + "doProcess : " + cmd);
-		Action action = router(cmd);
+		Action action = router(cmd); 
 		action.execute(request, response);
 	}
 	

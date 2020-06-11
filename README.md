@@ -21,7 +21,7 @@ CREATE TABLE users(
     password varchar2(100) not null,
     email varchar2(100) not null,
     address varchar2(100) not null,
-    userProfile varchar2(200) default '/blog/img/userProfile.png',
+    userProfile varchar2(200) default '/blog/images/userProfile.png',
     userRole varchar2(20),
     createDate timestamp
 ) ;

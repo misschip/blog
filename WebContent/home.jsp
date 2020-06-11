@@ -22,8 +22,10 @@ Card Images 항목에 있는 걸 반복해서 붙여넣은 것! -->
 		<form class="form-inline justify-content-end" action="/blog/board" method="get">
 		<input type="hidden" name="cmd" value="search" />
 		<input type="hidden" name="page" value="0" />
+		
     	<input type="text" name="keyword" class="form-control mr-sm-2" placeholder="Search">
     	<button class="btn btn-primary" type="submit">검색</button>
+
   </form>
 
 	</div>
