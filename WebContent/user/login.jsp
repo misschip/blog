@@ -7,7 +7,7 @@
 
 <div class="container">
   <h2>로그인</h2>
-  <form action="user?cmd=loginProc" method="post" class="was-validated">
+  <form action="/blog/user?cmd=loginProc" method="post" class="was-validated">
     <div class="form-group">
       <label for="uname">Username:</label>
       <input type="text" class="form-control" id="uname" placeholder="Enter username" name="username" required>

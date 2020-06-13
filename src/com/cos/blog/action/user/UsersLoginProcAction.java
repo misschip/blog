@@ -32,7 +32,7 @@ public class UsersLoginProcAction implements Action {
 		
 		if (u != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("users", u);
+			session.setAttribute("principal", u);
 			
 			RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
 			dis.forward(request, response);

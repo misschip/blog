@@ -1,6 +1,7 @@
 package com.cos.blog.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,7 @@ import com.cos.blog.action.user.UsersJoinAction;
 import com.cos.blog.action.user.UsersJoinProcAction;
 import com.cos.blog.action.user.UsersLoginAction;
 import com.cos.blog.action.user.UsersLoginProcAction;
+import com.cos.blog.action.user.UsersLogoutProcAction;
 
 // http://localhost:8000/blog/user
 @WebServlet("/user")
@@ -59,6 +61,9 @@ public class UsersController extends HttpServlet {
 		} else if (cmd.equals("loginProc")) {
 			// 회원 로그인을 수행한 후 -> 세션에 등록을 하고 -> index.jsp로 이동
 			return new UsersLoginProcAction();
+		} else if (cmd.equals("logoutProc")) {
+			// 회원 로그아웃을 수행한 후 -> 세션에서 제거하고 -> index.jsp로 이동
+			return new UsersLogoutProcAction();
 		}
 		
 		return null;

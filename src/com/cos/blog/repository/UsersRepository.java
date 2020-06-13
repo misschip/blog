@@ -44,13 +44,13 @@ public class UsersRepository {
 				user = Users.builder().id(rs.getInt("id")).username(rs.getString("username"))
 						.password(rs.getString("password")).email(rs.getString("email"))
 						.address(rs.getString("address")).userProfile(rs.getString("userProfile"))
-						.userRole(rs.getString("userRole")).createDate(rs.getTimestamp("createTime")).build();
+						.userRole(rs.getString("userRole")).createDate(rs.getTimestamp("createDate")).build();
 			}
 			return user;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println(TAG + "findById : " + e.getMessage());
+			System.out.println(TAG + "findByUsernameAndPassword : " + e.getMessage());
 		} finally {
 			DBConn.close(conn, pstmt, rs);
 		}
@@ -131,7 +131,7 @@ public class UsersRepository {
 	// null인 경우 : 수행 중 예외 발생
 	// users.size() == 0 인 경우 : 테이블에 사용자가 0명
 	// users.size() > 0인 경우 : 사용자가 1명 이상 존재
-	public List<Users> finaAll() {
+	public List<Users> findAll() {
 		final String SQL = "SELECT id,username,password,email,address,userProfile,userRole,createDate " + "FROM users";
 		List<Users> users = new ArrayList<>();
 
@@ -145,7 +145,7 @@ public class UsersRepository {
 				Users u = Users.builder().id(rs.getInt("id")).username(rs.getString("username"))
 						.password(rs.getString("password")).email(rs.getString("email"))
 						.address(rs.getString("address")).userProfile(rs.getString("userProfile"))
-						.userRole(rs.getString("userRole")).createDate(rs.getTimestamp("createTime")).build();
+						.userRole(rs.getString("userRole")).createDate(rs.getTimestamp("createDate")).build();
 
 				users.add(u);
 			}
@@ -177,7 +177,7 @@ public class UsersRepository {
 				user = Users.builder().id(rs.getInt("id")).username(rs.getString("username"))
 						.password(rs.getString("password")).email(rs.getString("email"))
 						.address(rs.getString("address")).userProfile(rs.getString("userProfile"))
-						.userRole(rs.getString("userRole")).createDate(rs.getTimestamp("createTime")).build();
+						.userRole(rs.getString("userRole")).createDate(rs.getTimestamp("createDate")).build();
 			}
 			return user;
 
