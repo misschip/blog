@@ -33,7 +33,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="nav-item"><a class="nav-link"
-							href="user?cmd=write">글쓰기</a></li>
+							href="board?cmd=write">글쓰기</a></li>
 						<li class="nav-item"><a class="nav-link" href="user?cmd=join">회원정보</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="user?cmd=logoutProc">로그아웃</a></li>

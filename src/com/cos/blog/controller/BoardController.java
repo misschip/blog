@@ -45,6 +45,9 @@ public class BoardController extends HttpServlet {
 		if (cmd.equals("home")) {
 			// 
 			return new BoardHomeAction();
+		} else if (cmd.equals("write")) {
+			// 
+			return new BoardWriteAction();
 		}
 		
 		return null;

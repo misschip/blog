@@ -6,7 +6,7 @@
 
 <div class="container">
   <h2>회원 가입</h2>
-  <form action="/action_page.php" class="was-validated">
+  <form action="/blog/user?cmd=joinProc" class="was-validated" method="POST">
     <div class="form-group">
       <label for="username">Username:</label>
       <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required>
