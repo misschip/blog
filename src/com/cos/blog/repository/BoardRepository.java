@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cos.blog.db.DBConn;
+import com.cos.blog.dto.BoardResponseDto;
 import com.cos.blog.model.Board;
-import com.cos.blog.model.Users;
 
 // 예전에는 DAO라 칭하던 클래스
 public class BoardRepository {
@@ -25,13 +25,16 @@ public class BoardRepository {
 		private ResultSet rs = null;
 		
 		public int save(Board board) {
-			final String SQL = "";
+			final String SQL = "INSERT INTO board (id,userId,title,content,readCount,createDate) "
+						+ " VALUES (board_seq.nextval,?,?,?,0,SYSDATE)";
 			
 			try {
 				conn = DBConn.getConnection();
 				pstmt = conn.prepareStatement(SQL);
 				// 물음표 완성하기
-				
+				pstmt.setInt(1, board.getUserId());
+				pstmt.setString(2, board.getTitle());
+				pstmt.setString(3, board.getContent());
 				
 				return pstmt.executeUpdate();
 			} catch (Exception e) {
@@ -81,18 +84,39 @@ public class BoardRepository {
 			return -1;
 		}
 		
-		public List<Board> finaAll() {
-			final String SQL = "";
-			List<Board> boards = new ArrayList<>();
+		public List<BoardResponseDto> findAll() {
+			final String SQL = "SELECT board.id,userId,title,content,readCount,board.createDate, username "
+							+ " FROM board "
+							+ " INNER JOIN users "
+							+ " ON board.userId = users.id";
+			List<BoardResponseDto> boardDtos = new ArrayList<>();
 			
 			try {
 				conn = DBConn.getConnection();
 				pstmt = conn.prepareStatement(SQL);
 				// 물음표 완성하기
 				
+				rs = pstmt.executeQuery();
 				// while 돌려서 리스트에 넣기
+				while (rs.next()) {
+					Board board = Board.builder()
+							.id(rs.getInt("id"))
+							.userId(rs.getInt("userId"))
+							.title(rs.getString("title"))
+							.content(rs.getString("content"))
+							.readCount(rs.getInt("readCount"))
+							.createDate(rs.getTimestamp("createDate"))
+							.build();
+					
+					BoardResponseDto boardDto = BoardResponseDto.builder()
+							.board(board)
+							.username(rs.getString("username"))
+							.build();
+					
+					boardDtos.add(boardDto);
+				}
 				
-				return boards;
+				return boardDtos;
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(TAG + "findAll : " + e.getMessage());

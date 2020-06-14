@@ -17,7 +17,7 @@ public class UsersLogoutProcAction implements Action {
 		HttpSession session = request.getSession();
 		session.setAttribute("principal", null);
 		
-		RequestDispatcher dis = request.getRequestDispatcher("/blog/board?cmd=home");
+		RequestDispatcher dis = request.getRequestDispatcher("/board?cmd=home");
 		dis.forward(request, response);
 
 	}

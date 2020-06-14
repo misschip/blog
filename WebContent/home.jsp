@@ -6,7 +6,7 @@
 <%@ include file='include/navBar.jsp' %>
 
 	<%
-	Users user = (Users)session.getAttribute("users");
+	Users user = (Users)session.getAttribute("principal");
 	
 	%>
 	<% if (user != null) { %>
@@ -18,12 +18,12 @@
 <div class="container">
 
 
-<c:forEach var="board" items="${boards}">
+<c:forEach var="boardDto" items="${boardDtos}">
   <div class="card" style="width:400px">
     <img class="card-img-top" src="images/userProfile.png" alt="Card image" style="width:100%">
     <div class="card-body">
-      <h4 class="card-title">${board.title}</h4>
-      <p class="card-text">${board.content}</p>
+      <h4 class="card-title">${boardDto.board.title}</h4>
+      <p class="card-text">${boardDto.board.content}</p>
       <a href="#" class="btn btn-primary">상세보기</a>
     </div>
   </div>

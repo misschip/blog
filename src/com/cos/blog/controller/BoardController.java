@@ -1,6 +1,7 @@
 package com.cos.blog.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,10 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cos.blog.action.Action;
 import com.cos.blog.action.board.BoardHomeAction;
-import com.cos.blog.action.user.UsersJoinAction;
-import com.cos.blog.action.user.UsersJoinProcAction;
-import com.cos.blog.action.user.UsersLoginAction;
-import com.cos.blog.action.user.UsersLoginProcAction;
+import com.cos.blog.action.board.BoardWriteAction;
+import com.cos.blog.action.board.BoardWriteProcAction;
 
 // http://localhost:8000/blog/board
 @WebServlet("/board")
@@ -48,6 +47,9 @@ public class BoardController extends HttpServlet {
 		} else if (cmd.equals("write")) {
 			// 
 			return new BoardWriteAction();
+		} else if (cmd.equals("writeProc")) {
+			// 
+			return new BoardWriteProcAction();
 		}
 		
 		return null;

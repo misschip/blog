@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.cos.blog.action.Action;
 import com.cos.blog.model.Users;
 import com.cos.blog.repository.UsersRepository;
+import com.cos.blog.util.SHA256;
 import com.cos.blog.util.Script;
 
 public class UsersLoginProcAction implements Action {
@@ -19,14 +20,15 @@ public class UsersLoginProcAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String rawPassword = request.getParameter("password");
 		
 		if (
 				username == null || username.equals("") ||
-				password == null || password.equals("")
+				rawPassword == null || rawPassword.equals("")
 			)
 		return;
 
+		String password = SHA256.encodeSha256(rawPassword);
 		UsersRepository usersRepository = UsersRepository.getInstance();
 		Users u = usersRepository.findByUsernameAndPassword(username,password);
 		
