@@ -7,7 +7,7 @@
 <title>File Upload Form</title>
 </head>
 <body>
-	<form action="fileUpload.jsp" method="POST" enctype="mulitpart/form-data">
+	<form action="fileUpload.jsp" method="POST" enctype="multipart/form-data">
 		<table border="1">
 			<tr>
 				<td colspan="2" align="center"><h4>File Upload Form</h4></td>

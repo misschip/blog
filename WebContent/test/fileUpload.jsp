@@ -23,9 +23,14 @@
 						new DefaultFileRenamePolicy()
 				);
 		
+		name = multi.getParameter("name");
+
 		// Enumeration<String> files = multi.getFileNames();
-		String filename = multi.getOriginalFileName("filename");
-		String origFilename = multi.getFilesystemName("filename");
+		// String file = files.nextElement();	// Enumeration을 통해 갖고오는 값은 결국 "filename"임
+		originalFileName = multi.getOriginalFileName("filename");
+		fileName = multi.getFilesystemName("filename");
+		System.out.println("originalFileName : " + originalFileName);
+		System.out.println("fileName : " + fileName);
 		
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -41,6 +46,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<form name="uploadCheck" action="fileUploadCheck.jsp" method="POST">
+		<input type="hidden" name="name" value="<%=name %>">
+		<input type="hidden" name="filename" value="<%=fileName %>">
+		<input type="hidden" name="origfilename" value="<%=originalFileName %>">
+	</form>
+	<a href="#" onclick="javascript:fileUploadCheck.submit()">업로드 체크 및 다운로드 페이지로 이동</a>
 </body>
 </html>
