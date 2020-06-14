@@ -17,18 +17,18 @@
 <body>
 
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-		<a class="navbar-brand" href="index.jsp">테스트 blog</a>
+		<a class="navbar-brand" href="/blog/index.jsp">테스트 blog</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+		<div class="justify-content-between collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<c:choose>
 					<c:when test="${empty sessionScope.principal}">
 						<li class="nav-item"><a class="nav-link"
-							href="user?cmd=login">로그인</a></li>
-						<li class="nav-item"><a class="nav-link" href="user?cmd=join">회원가입</a>
+							href="/blog/user?cmd=login">로그인</a></li>
+						<li class="nav-item"><a class="nav-link" href="/blog/user?cmd=join">회원가입</a>
 						</li>
 					</c:when>
 					<c:otherwise>
@@ -40,6 +40,11 @@
 					</c:otherwise>
 				</c:choose>
 			</ul>
+			<c:if test="${not empty sessionScope.principal}">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="/blog/user?cmd=profileUpload"><img style="border-radius: 20px" src="${sessionScope.principal.userProfile}" onerror="this.src='/blog/images/userProfile.png'" width="40px" height="40px" /></a>
+			</ul>
+			</c:if>
 		</div>
 	</nav>
 	<br />

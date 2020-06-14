@@ -14,4 +14,5 @@ import lombok.NoArgsConstructor;
 public class BoardResponseDto {
 	private Board board;
 	private String username;
+	private String userProfile;
 }

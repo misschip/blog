@@ -85,7 +85,7 @@ public class BoardRepository {
 		}
 		
 		public List<BoardResponseDto> findAll() {
-			final String SQL = "SELECT board.id,userId,title,content,readCount,board.createDate, username "
+			final String SQL = "SELECT board.id,userId,title,content,readCount,board.createDate, username, userProfile "
 							+ " FROM board "
 							+ " INNER JOIN users "
 							+ " ON board.userId = users.id";
@@ -111,6 +111,7 @@ public class BoardRepository {
 					BoardResponseDto boardDto = BoardResponseDto.builder()
 							.board(board)
 							.username(rs.getString("username"))
+							.userProfile(rs.getString("userProfile"))
 							.build();
 					
 					boardDtos.add(boardDto);

@@ -14,6 +14,8 @@ import com.cos.blog.action.user.UsersJoinProcAction;
 import com.cos.blog.action.user.UsersLoginAction;
 import com.cos.blog.action.user.UsersLoginProcAction;
 import com.cos.blog.action.user.UsersLogoutProcAction;
+import com.cos.blog.action.user.UsersProfileUploadAction;
+import com.cos.blog.action.user.UsersProfileUploadProcAction;
 
 // http://localhost:8000/blog/user
 @WebServlet("/user")
@@ -64,7 +66,14 @@ public class UsersController extends HttpServlet {
 		} else if (cmd.equals("logoutProc")) {
 			// 회원 로그아웃을 수행한 후 -> 세션에서 제거하고 -> index.jsp로 이동
 			return new UsersLogoutProcAction();
+		} else if (cmd.equals("profileUpload")) {
+			// 
+			return new UsersProfileUploadAction();
+		} else if (cmd.equals("profileUploadProc")) {
+			// 
+			return new UsersProfileUploadProcAction();
 		}
+		
 		
 		return null;
 	}

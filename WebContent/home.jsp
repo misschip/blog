@@ -20,7 +20,7 @@
 
 <c:forEach var="boardDto" items="${boardDtos}">
   <div class="card" style="width:400px">
-    <img class="card-img-top" src="images/userProfile.png" alt="Card image" style="width:100%">
+    <img class="card-img-top" onerror="src='/blog/images/userProfile.png'" src="${boardDto.userProfile}" alt="Card image" style="width:10%">
     <div class="card-body">
       <h4 class="card-title">${boardDto.board.title}</h4>
       <p class="card-text">${boardDto.board.content}</p>
