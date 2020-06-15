@@ -53,13 +53,20 @@
 						
 							<c:forEach var="replyDto" items="${detailDto.replyDtos}">
 							<!-- 댓글 아이템 -->
-							<li class="media">
+							<li id="reply-${replyDto.reply.id}" class="media">
 								<img onerror="this.src='/blog/images/userProfile.png'" src="${replyDto.userProfile}" alt="" class="img-circle">		
 								<div class="media-body">
 									<strong class="text-primary">${replyDto.username}</strong>
 									<p>
 										${replyDto.reply.content}
 									</p>
+								</div>
+								<div class="m-3">
+									<!-- Materialize CSS 사이트의 아이콘을 가져다 씀 nav.jsp의 head 태그 안에 링크 들어감 -->
+									<!-- <i style="font-size:30px" class="material-icons">edit</i> &nbsp;  -->
+									<c:if test="${replyDto.reply.userId eq sessionScope.principal.id }">
+									<i onclick="replyDelete(${replyDto.reply.id})" style="font-size:30px; cursor: pointer; color:dark-gray" class="material-icons">delete</i>
+									</c:if>
 								</div>
 							</li>
 							</c:forEach>

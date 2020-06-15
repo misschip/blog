@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cos.blog.action.Action;
+import com.cos.blog.action.reply.ReplyDeleteProcAction;
 import com.cos.blog.action.reply.ReplyWriteProcAction;
 
 // http://localhost:8000/blog/reply
@@ -40,6 +41,9 @@ public class ReplyController extends HttpServlet {
 		if (cmd.equals("writeProc")) {
 			// 회원가입 페이지로 이동
 			return new ReplyWriteProcAction();	
+		} else if (cmd.equals("deleteProc")) {
+			// 회원가입 페이지로 이동
+			return new ReplyDeleteProcAction();	
 		}
 		
 		return null;

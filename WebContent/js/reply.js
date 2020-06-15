@@ -1,4 +1,36 @@
+function replyDelete(replyId) {
+		
+		$.ajax({
+			type: "post",
+			url: "/blog/reply?cmd=deleteProc",
+			data: "replyId=" + replyId,		// 받는 쪽에서 request.getParameter()로 받을 수 있도록!
+			contentType: "application/x-www-form-urlencoded; charset=utf-8",
+			dataType: "text"	
+		}).done(function(result){
+
+			if (result == 1) {
+				alert("댓글 삭제 성공");
+				var replyItem = $("#reply-" + replyId);
+				replyItem.remove();
+			} else {	// 0, -1
+				alert("댓글 삭제 실패");
+			}
+			
+		}).fail(function(error){
+			alert("댓글 삭제 실패");
+		});
+	}
+
+
+
 	function replyWrite(boardId, userId) {
+		
+		// if (typeof userId === "undefined") {
+		if (userId === undefined) {
+			alert("로그인이 필요합니다.");
+			return;
+		}
+		
 		var data = {
 			boardId: boardId,
 			userId: userId,
@@ -21,7 +53,7 @@
 				alert("댓글 작성 성공");
 				$("#reply__list").empty();
 				console.log(result);
-				renderReplyList(result);
+				renderReplyList(result, userId);
 				$("#reply__write__form").val("");
 			}
 			
@@ -32,16 +64,21 @@
 			// 2. ajax 재호출 findall()
 			// 3. reply__list를 찾아서 내부에 채워주기
 			
-			
-		function renderReplyList(replyDtos){
+		// 아래 함수가 받는 매개값 replyDtos는 자바 객체가 아니라 json 데이터임에 유의
+		function renderReplyList(replyDtos, userId){
 			for(var replyDto of replyDtos){
-				$("#reply__list").append(makeReplyItem(replyDto));
+				$("#reply__list").append(makeReplyItem(replyDto, userId));
 			}
 		}
 			
 			
-		function makeReplyItem(replyDto){
-			var replyItem = `<li class="media">`;
+		function makeReplyItem(replyDto, userId){
+			console.log(replyDto);
+			
+			// reply-id 추가 시작
+			var replyItem = `<li id="reply-${replyDto.reply.id}" class="media">`;
+			// reply-id 추가 끝
+			
 			if(replyDto.userProfile == null){
 				replyItem += `<img src="/blog/images/userProfile.png" class="img-circle">`;	
 			}else{
@@ -52,6 +89,14 @@
 			replyItem += `<strong class="text-primary">${replyDto.username}</strong>`;
 			replyItem += `<p>${replyDto.reply.content}</p>`;
 			replyItem += `</div>`;
+			
+			
+			if (replyDto.reply.userId == userId) {
+				replyItem += `<div class="m-3">`;
+				replyItem += `<i onclick="replyDelete(${replyDto.reply.id})" style="font-size:30px; cursor: pointer; color:dark-gray" class="material-icons">delete</i>`;
+				replyItem += `</div>`;
+			}
+			
 			replyItem += `</li>`;
 			return replyItem;
 		}	
