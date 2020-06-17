@@ -56,6 +56,12 @@
     </label>
   </div>
   <button type="submit" class="btn btn-primary">로그인</button>
+  <%--  아래 a 링크 출처 : https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api
+  // GET /oauth/authorize?client_id={app_key}&redirect_uri={redirect_uri}&response_type=code HTTP/1.1
+  // client_id 값은 카카오 앱키의 REST API키 값임 https://developers.kakao.com/console/app/449149/config/appKey
+  // redirect_uri 값은 제품설정-카카오 로그인의 Redirect URI에 설정한 주소값임 https://developers.kakao.com/console/app/449149/product/login --%>
+  <a href="https://kauth.kakao.com/oauth/authorize?client_id=fd8427c16b609d2587da1dd88736a545&redirect_uri=http://localhost:8000/blog/oauth/kakao?cmd=callback&response_type=code"><img height="38px" src="/blog/images/kakao_login_button.png"></a>
+	<%-- 위 링크 클릭시 클라이언트ID, response 타입:code, 콜백주소가 보내지고 그 외 동의한 email,profile 사진,닉네임 등 선택값도 보내짐 --%>
 </form>
 
 </div>
