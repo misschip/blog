@@ -173,6 +173,7 @@ public class KakaoCallbackAction implements Action {
 			}
 			HttpSession session = request.getSession();
 			session.setAttribute("principal", user);
+			session.setAttribute("kakaoUser", true);
 
 			Script.href("카카오 로그인 완료", "/blog/index.jsp", response);
 		}else {

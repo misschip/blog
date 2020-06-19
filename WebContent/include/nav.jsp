@@ -69,6 +69,11 @@
      <%--  <% }; %> --%>
       	</c:otherwise>
       </c:choose>
+      <c:if test="${sessionScope.kakaoUser}">
+      		<li class="nav-item">
+	        <a class="nav-link" href="/blog/"></a>
+      		</li>
+      </c:if>
     </ul>
     
     <ul class="navbar-nav">
