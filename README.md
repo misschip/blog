@@ -80,8 +80,9 @@ offset 0 rows fetch next 3 rows only;
 SELECT * FROM board LIMIT 3 OFFSET 0;
 ```
 
+
 ## 카카오 로그인 API 활용
-[OAuth 2.0](../OAuth_README.md)
+[OAuth 2.0](OAuth_README.md)
 
 
 ## 상세보기 댓글 디자인
