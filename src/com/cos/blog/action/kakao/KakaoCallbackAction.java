@@ -42,7 +42,7 @@ public class KakaoCallbackAction implements Action {
 		String client_id = "fd8427c16b609d2587da1dd88736a545";	// 앱 생성시 발급받은 REST API 키
 		String redirect_uri = "http://localhost:8000/blog/oauth/kakao?cmd=callback";
 		
-		Script.outText(code, response);	// ???
+		Script.outText(code, response);	//
 		
 		// POST 요청, Content-type: application/x-www-form-urlencoded;charset=utf-8
 		// 아래 endpoint 주소에 관해서는 링크 참조
@@ -81,8 +81,15 @@ public class KakaoCallbackAction implements Action {
 			sb.append(input);
 		}
 		System.out.println("sb.toString() : " + sb.toString());
-		
-		
+		// 바로 위에서 카카오 인증 서버로부터 보내져온 데이터는 JSON 타입이고 다음의 정보를 포함하고 있다.
+		// {
+		// "access_token" : "eZ-B2Ixxxxx 자체 블라인드 처리 xxxxx",	// 제일 중요한 정보
+		// "token_type":"bearer",		// 고정값
+		// "refresh_token":"_XfWOWCkxxxx 자체 블라인드 처리 xxxxx",
+		// "expires_in":21599,		// 초단위(대략 6시간)
+		// "scope":"account_email profile",
+		// "refresh_token_expires_in":5183999	// 초단위
+		// }
 		
 		// Gson으로 파싱
 		Gson gson = new Gson();
@@ -103,6 +110,7 @@ public class KakaoCallbackAction implements Action {
 
 		HttpsURLConnection conn2 = (HttpsURLConnection)url2.openConnection();
 		// http header 값 넣기
+		// Bearer와 토큰값 사이에 스페이스 한칸!
 		conn2.setRequestProperty("Authorization", "Bearer "+oAuthToken.getAccess_token());
 		conn2.setDoOutput(true);
 		
@@ -115,7 +123,32 @@ public class KakaoCallbackAction implements Action {
 			sb2.append(input2);
 		}
 		System.out.println("sb2.toString() : " + sb2.toString());
-		
+		// 바로 위에서 카카오의 리소스 API 서버로부터 보내져온 데이터는 JSON 타입이고 다음의 정보를 포함하고 있다. 
+		// {
+		//	"id":13xxxxxxx57,
+		//	"connected_at":"2020-06-18T02:33:36Z",
+		//	"properties":
+		//		{
+		//		"nickname":"박x주",
+		//		"profile_image":"http://k.kakaocdn.net/dn/t2xxx/img_640x640.jpg",
+		//		"thumbnail_image":"http://k.kakaocdn.net/dn/t2e0M/btqxxxkk/img_110x110.jpg"
+		//		},
+		//	"kakao_account":
+		//		{
+		//		"profile_needs_agreement":false,
+		//		"profile":
+		//			{
+		//			"nickname":"박x주",
+		//			"thumbnail_image_url":"http://k.kakaocdn.net/dn/t2e0M/btqxxxk/img_110x110.jpg",
+		//			"profile_image_url":"http://k.kakaocdn.net/dn/t2e0M/btqxxxkk/img_640x640.jpg"
+		//			},
+		//		"has_email":true,
+		//		"email_needs_agreement":false,
+		//		"is_email_valid":true,
+		//		"is_email_verified":true,
+		//		"email":"missxxx@hanmxx.net"
+		//		}
+		//	}
 		
 		
 		// Gson으로 파싱
