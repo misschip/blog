@@ -44,15 +44,14 @@
     	그 값의 유무에 따라 이번 로그인 화면 표출시에도 아이디 기억하기를 미리 체크된 상태로 보여주도록 함 -->
     <c:choose>
     	<c:when test="${empty cookie.remember}">
-      <input class="form-check-input" type="checkbox" name="remember"> 아이디 기억하기
+      		<input class="form-check-input" type="checkbox" name="remember"> 아이디 기억하기
       	</c:when>
       	<c:otherwise>
-      	<input class="form-check-input" type="checkbox" name="remember" checked> 아이디 기억하기
+      		<input class="form-check-input" type="checkbox" name="remember" checked> 아이디 기억하기
       	</c:otherwise>
      </c:choose>
      
-      <div class="valid-feedback">Valid.</div>
-      <div class="invalid-feedback">Check this checkbox to continue.</div>
+
     </label>
   </div>
   <button type="submit" class="btn btn-primary">로그인</button>
