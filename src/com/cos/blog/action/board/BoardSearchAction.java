@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cos.blog.action.Action;
 import com.cos.blog.model.Board;
@@ -51,12 +52,17 @@ public class BoardSearchAction implements Action {
 		request.setAttribute("boards", boards);
 		
 		// 2.5 마지막 페이지 확인 로직
-		int count = boardRepository.count();
+		int count = boardRepository.count(keyword);
 		int lastPage = (count-1)/3;	// 한페이지에 글 3개씩 보여주고 0페이지에서 이미 3개 보여주고 있으므로
 		double currentPercent = (double)(page)/(lastPage)*100;
 		
 		request.setAttribute("lastPage", lastPage);
 		request.setAttribute("currentPercent", currentPercent);
+		
+		// 이전 페이지 정보
+		HttpSession session = request.getSession();
+		session.setAttribute("backPage", page);
+		session.setAttribute("backKeyword", keyword);
 		
 		// 3. home.jsp로 이동
 		RequestDispatcher dis = request.getRequestDispatcher("home.jsp");

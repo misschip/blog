@@ -8,6 +8,6 @@
 	System.out.println(session.getClass().getName());
 %>
 
-<c:redirect url="/board?cmd=home" />
+<c:redirect url="/board?cmd=home&page=0" />
 <!--  c:redirect는 잘 안 쓰이는 태그임. -->
 <!--  왜 그런진 모르지만 c:redirect로 쓸때는 blog 부분을 빼야 제대로 된다 -->

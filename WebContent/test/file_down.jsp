@@ -3,16 +3,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ page trimDirectiveWhitespaces="true" %> <%--  이 한줄 코드는
+	java.lang.IllegalStateException: getoutputstream has already been called for this response()
+	예외 발생을 방지하기 위한 임시조치. 근본적으로는 JSP 페이지에서는 텍스트 출력을 위해서 getWriter()만 하는게 바람직하고
+	getOutputStream()으로 바이너리 출력하는 코드는 Servlet에 들어가도록 하는 게 맞다고 함 --%>
+    
 <%
 	String fileName = request.getParameter("file_name");
 
-	String savePath = "upload";
+	String savePath = "images";
 	ServletContext context = getServletContext();
 	String sDownloadPath =  context.getRealPath(savePath);
+	
+	System.out.println("file_down.jsp : sDownloadPath : " + sDownloadPath);
+	
 	String sFilePath = sDownloadPath + "\\" + fileName;
+	
+	System.out.println("file_down.jsp : sFilePath : " + sFilePath);
+	
 	byte[] b = new byte[4096];
 	FileInputStream in = new FileInputStream(sFilePath);
 	String sMimeType = getServletContext().getMimeType(sFilePath);
+	
 	System.out.println("sMimeType>>>" + sMimeType);
 	
 	if (sMimeType == null) {

@@ -6,7 +6,10 @@
     
 <%
 	String uploadPath = request.getRealPath("/images");
-
+	String contextPath = request.getContextPath();
+	
+	System.out.println("request.getRealPath('/images') : " + request.getRealPath("/images"));
+	System.out.println("request.getContextPath() : " + request.getContextPath());
 
 	int size = 10*1024*1024;
 	String name = "";

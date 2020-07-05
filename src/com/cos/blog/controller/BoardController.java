@@ -45,7 +45,7 @@ public class BoardController extends HttpServlet {
 	// 팩토리 패턴 
 	public Action router(String cmd) {
 		if (cmd.equals("home")) {
-			// 회원가입 페이지로 이동
+			
 			return new BoardHomeAction();	// Board의 목록 보여주기
 		} else if (cmd.equals("write")) {
 			// 
